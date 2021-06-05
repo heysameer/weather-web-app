@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <body bgcolor="wheat">
+        <form name="reg_form" method="GET">
+            firstname:<input type="text" id="firstname" name="firstname" size="20" maxlength="15"><br /> <br/>
+            Password:<input type="password" id="password" name="password" maxlength="10"><br /><br/>
+            About you:<textarea id="about" name="about"></textarea> <br/>
+            Choose your gender:<input type="radio" name="gender" id="gender" value="Male">Male <input type="radio" name="gender" id="gender" value="Female">Female<br/>
+
+            Choose your Class:<input type="radio" name="class" id="class" value="School" checked="checked">School <input type="radio" name="class" id="class" value="UG">UG<input type="radio" name="class" id="class" value="PG">PG<br/>
+            Choose your hobbies<input type="checkbox" name="hobbies" id="hobbies" value="Cricket" checked="checked">Cricket<input type="checkbox" id="hobbies" name="hobbies" value="Football">Football<input type="checkbox" id="hobbies" name="hobbies" value="Chess">Chess<br/><br/>
+            <input type="checkbox" name="terms" id="terms" value="terms" checked="checked"> I accept the terms and conditions<br/>
+            Choose dob: <select name="dob" id="dob">
+            <option>Month</option><option>January</option><option>February</option><option>March</option><option>April</option><option>May</option><option>June</option><option>July</option><option>August</option><option>September</option><option>October</option><option>November</option><option>December</option>
+            </select>
+            <select name="dob" id="dob">
+                <option>Date</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>35</option><option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
+
+            </select><br/>
+             Choose your hobbies:<select name="hobbies" id="hobbies" multiple="multiple">
+                <option>Hobbies:-</option><option>Cricket</option><option>Singing</option><option>Dancing</option><option>Chess</option><option>Reading</option>
+            </select><br/>
+            Choose your City:<select name="add" id="add"><option>Choose address</option>
+                <optgroup label="Delhi">
+                    <option>Badarpur</option><option>Sarita Vihar</option><option>Kalkaji</option>
+                </optgroup>
+                <optgroup label="Haryana">
+                    <option>faridabad</option><option>Rohtak</option><option>Sonipath</option>
+                </optgroup>
+            </select><br/>
+            Your file:<input type="file" name="file" id="file" size="30" accept="">
+            
+            <input type="button" name="visit" id="visit" value="Visit google" onclick="window.open('http://www.google.com');">
+            <input type="image" name="submit" id="submit" value="submit" src=".jpg">
+            <input type="submit" name="submit" id="submit" value="register now">
+            <input type="reset" name="reset" id="reset" value="clear all">
+        </form>
+    </body>
+</body>
+</html>

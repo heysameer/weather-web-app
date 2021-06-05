@@ -5,9 +5,9 @@ const favourite=(i)=>{
     <div class="container" id="fav${i}">
     <h2 class="d-flex justify-content-between meteo-title AN${i}">
         <span>
-            Weather in <a href="https://www.google.com/maps/place/India" class="text-muted meteo-city" target="_blank">India</a>
+            Weather in <a id="fav${i}city" href="https://www.google.com/maps/place/India" class="text-muted meteo-city" target="_blank">India</a>
         </span>
-        <p class="remove AN${i}" style="cursor:pointer">X</p> 
+        <p class="fav${i}" style="cursor:pointer">X</p> 
        
     </h2>
     <section class="section-meteo row">
@@ -150,7 +150,7 @@ function displayMeteo1(data,k){
     }
     // Update Google Map URL
     googleMapCity = "https://www.google.fr/maps/place/" + data.city.coord.lat + "," + data.city.coord.lon;
-    $(`.meteo-title.AN${k} span`).html('Weather in <a href="' + googleMapCity + '" class="text-muted meteo-city" target="_blank">' + data.city.name + ', ' + data.city.country + '</a>');
+    $(`.meteo-title.AN${k} span`).html(`Weather in <a id="fav${k}city" href="` + googleMapCity + '" class="text-muted meteo-city" target="_blank">' + data.city.name + ', ' + data.city.country + '</a>');
     // Update meteo for each day
     var tempMoyenne = 0;
     for (var i = 0; i < 3; i++){
@@ -194,14 +194,14 @@ function displaySunriseSunset1(lat, long,k){
 
 let obj=null;
 obj=JSON.parse(localStorage.getItem("fav-collection"))
-console.log(obj);
+
 let arr=[];
 if(obj==null){
     localStorage.setItem("fav-collection",JSON.stringify({arr}));
 }else{
     arr=obj.arr;
 }
-console.log(arr);
+
 
 if(arr.length!==0){
     for(let i=0;i<arr.length;i++){
@@ -210,12 +210,13 @@ if(arr.length!==0){
             if (error == null) {
              $("#fav-item").append(favourite(i+1))
                displayMeteo1(data,i+1);
-               $(`.remove.AN${i+1}`).click(function(){
-                   arr.splice(i,1)
-                $(`#fav${i+1}`).remove();
-                localStorage.setItem("fav-collection",JSON.stringify({arr}));
+               $(`.fav${i+1}`).click(function(e){
+                   let dd=$(`#fav${i+1}city`).text().split(",")[0];
+                   let aa=arr.findIndex((i)=>i===dd)
+                   arr.splice(aa,1)
+                 $(`#${this.className}`).remove();
+                 localStorage.setItem("fav-collection",JSON.stringify({arr}));
                })
-               console.log($(`.remove.AN${i+1}`));
             }
             else {
                 meteoTitle = $('#meteo-title span');
@@ -247,7 +248,6 @@ $(document).ready(function(){
     if (document.location.hash){
         // Get city from hash
         city = document.location.hash.substr(1);
-        console.log(city);
     }
     else {
         // Default city
@@ -286,14 +286,11 @@ $(document).ready(function(){
 
 $("#fav-button").on('click',function(){
     let city=$('#search-fav').val();
-    console.log(city);
     getMeteoByCity(city, function (data, error){
         if (error == null) {
             arr.push(city);
             localStorage.setItem("fav-collection",JSON.stringify({arr}));
-         $("#fav-item").append(favourite(arr.length))
-           displayMeteo1(data,arr.length);
-
+            window.location.reload();
         }
         else {
             meteoTitle = $('#meteo-title span');

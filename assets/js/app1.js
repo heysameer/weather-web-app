@@ -282,9 +282,7 @@ $(document).ready(function(){
     });
 });
 
-
-
-$("#fav-button").on('click',function(){
+let clickHandler=function(){
     let city=$('#search-fav').val();
     getMeteoByCity(city, function (data, error){
         if (error == null) {
@@ -293,17 +291,25 @@ $("#fav-button").on('click',function(){
             window.location.reload();
         }
         else {
-            meteoTitle = $('#meteo-title span');
-            meteoTitle.html('City <span class="text-muted">' + city + '</span> not found');
+          alert(`${city} `+"not found");
         }
         // Stop loader
         setTimeout(function () {
             loading.attr('class', 'loading')
         }, 500);
     });
-//    $("#fav-item").append(favourite(0));
+}
+
+$("#fav-button").on('click',clickHandler)
+$("#search-fav").on('keypress',function(e) {
+    if(e.which == 13) {
+        clickHandler();
+    }
+});
    
-})
+
+   
+
 
 // -- Core --
 $("#meteo-form").submit(function (event) {

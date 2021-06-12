@@ -222,5 +222,7 @@ footer li{
     .meteo-day{
         flex: 100%;
     }
+    .favourite-adjustment{
+       font-size: 25px;
+    }    
 }
-
